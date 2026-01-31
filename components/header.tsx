@@ -57,15 +57,22 @@ export function Header() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -12 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="relative mr-6 md:mr-8 h-12 w-12 shrink-0"
+                className="relative mr-6 md:mr-8 h-12 w-12 shrink-0 group"
               >
-                <Link href="#home" className="block h-full w-full">
-                  <Image
-                    src="/logos/logo-sygnet.svg"
-                    alt="Bolsia"
-                    fill
-                    className="object-contain dark:invert"
-                  />
+                <Link href="#home" className="block h-full w-full outline-none">
+                  <span className="flex h-full w-full origin-center items-center justify-center transition-transform duration-300 ease-out group-hover:scale-110 group-hover:rotate-6">
+                    <Image
+                      src="/logos/logo-sygnet.svg"
+                      alt="Bolsia"
+                      fill
+                      className="object-contain dark:invert"
+                    />
+                  </span>
+                  <span
+                    className="pointer-events-none absolute left-full top-1/2 z-10 ml-3 -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-lg border border-white/20 bg-foreground/95 px-3 py-1.5 text-xs font-medium tracking-wide text-primary-foreground shadow-lg opacity-0 backdrop-blur-sm transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 dark:border-white/10 dark:bg-foreground/95"
+                  >
+                    Strona główna
+                  </span>
                 </Link>
               </motion.div>
             )}

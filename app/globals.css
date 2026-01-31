@@ -4,23 +4,23 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Bolsia brand - Soft blush pink #F7E6E0 */
-  --background: oklch(0.95 0.02 25);
+  /* Bolsia brand – jasny róż #FFDCE8 */
+  --background: oklch(0.98 0.015 350);
   --foreground: oklch(0.15 0.01 30);
-  --card: oklch(0.98 0.015 25);
+  --card: oklch(0.98 0.015 350);
   --card-foreground: oklch(0.15 0.01 30);
-  --popover: oklch(0.98 0.015 25);
+  --popover: oklch(0.98 0.015 350);
   --popover-foreground: oklch(0.15 0.01 30);
   /* Deep charcoal as primary */
   --primary: oklch(0.18 0.01 30);
   --primary-foreground: oklch(0.95 0.02 25);
-  /* Soft warm blush for secondary */
-  --secondary: oklch(0.92 0.025 25);
-  --secondary-foreground: oklch(0.18 0.01 30);
-  --muted: oklch(0.90 0.02 25);
-  --muted-foreground: oklch(0.45 0.01 30);
-  /* Rose gold accent */
-  --accent: oklch(0.65 0.10 25);
+  /* Light blush for secondary (buttons, etc.) */
+  --secondary: oklch(0.94 0.04 350);
+  --secondary-foreground: oklch(0.25 0.03 350);
+  --muted: oklch(0.94 0.025 350);
+  --muted-foreground: oklch(0.45 0.02 350);
+  /* Pink accent derived from #FFCDE0 */
+  --accent: oklch(0.75 0.12 350);
   --accent-foreground: oklch(0.99 0.005 25);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
@@ -42,11 +42,12 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   
-  /* Bolsia brand color */
-  --bolsia-blush: #F7E6E0;
-  --bolsia-blush-light: #FDF8F6;
-  --bolsia-blush-dark: #E8D1C9;
+  /* Bolsia brand color – jasny róż #FFDCE8 */
+  --bolsia-blush: #FFDCE8;
+  --bolsia-blush-light: #FFEEF4;
+  --bolsia-blush-dark: #FFCDE0;
 }
+
 
 .dark {
   --background: oklch(0.12 0.01 30);

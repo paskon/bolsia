@@ -42,7 +42,7 @@ export function AboutSection() {
             className="relative lg:h-full overflow-visible pt-0"
           >
             {/* Mobile */}
-            <div className="relative aspect-[4/5] overflow-hidden bg-[#F7E6E0] dark:bg-muted lg:hidden">
+            <div className="relative aspect-[4/5] overflow-hidden bg-[#FFDCE8] dark:bg-muted lg:hidden">
               <Image
                 src="/images/klaudia-paszkiewicz.png"
                 alt="mgr Klaudia Paszkiewicz - Kosmetolog"
@@ -53,7 +53,7 @@ export function AboutSection() {
             </div>
             {/* Desktop: ta sama wysokość co hero image, pozycja od góry sekcji (nie zmienia się przy powiększaniu treści po prawej) */}
             <div className="relative z-10 hidden w-full overflow-hidden lg:block lg:absolute lg:top-[86px] lg:bottom-auto lg:left-0 lg:right-0 lg:aspect-auto lg:h-[770px]">
-              <div className="relative h-full w-full overflow-hidden bg-[#F7E6E0] dark:bg-muted">
+              <div className="relative h-full w-full overflow-hidden bg-[#FFDCE8] dark:bg-muted">
                 <Image
                   src="/images/klaudia-paszkiewicz.png"
                   alt="mgr Klaudia Paszkiewicz - Kosmetolog"
@@ -96,7 +96,7 @@ export function AboutSection() {
                   transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                   className="flex items-start gap-3"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#F7E6E0] dark:bg-muted flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#FFDCE8] dark:bg-muted flex items-center justify-center">
                     <item.icon className="w-5 h-5 text-foreground" />
                   </div>
                   <div>

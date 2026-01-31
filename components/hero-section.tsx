@@ -26,7 +26,7 @@ export function HeroSection() {
   const hearts = useHearts()
 
   return (
-    <section id="home" className="relative min-h-[98vh] max-h-[1200px] overflow-visible bg-[#F7E6E0] dark:bg-background">
+    <section id="home" className="relative min-h-[98vh] max-h-[1200px] overflow-visible bg-[#FFDCE8] dark:bg-background">
       {/* Spadające serduszka – tylko w hero; na mobile start 20px powyżej viewport */}
       <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden max-lg:top-[-20px] max-lg:h-[calc(100%+20px)]" aria-hidden>
         {hearts.map((heart) => (
@@ -128,7 +128,7 @@ export function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <div className="absolute left-0 right-0 bottom-0 top-20 bg-gradient-to-t from-[#F7E6E0]/50 dark:from-background/70 to-transparent z-10 lg:hidden" />
+            <div className="absolute left-0 right-0 bottom-0 top-20 bg-gradient-to-t from-[#FFDCE8]/50 dark:from-background/70 to-transparent z-10 lg:hidden" />
             <div className="absolute inset-0 max-lg:translate-y-12 lg:translate-y-0">
               <Image
                 src="/images/hero-fashion.png"

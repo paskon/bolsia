@@ -186,10 +186,20 @@ export function Footer() {
               © {new Date().getFullYear()} Bolsia. Wszelkie prawa zastrzeżone.
             </p>
             <div className="flex gap-6 text-xs text-primary-foreground/50">
-              <Link href="#" className="hover:text-primary-foreground transition-colors">
+              <Link
+                href="/polityka-prywatnosci"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary-foreground transition-colors"
+              >
                 Polityka prywatności
               </Link>
-              <Link href="#" className="hover:text-primary-foreground transition-colors">
+              <Link
+                href="/regulamin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary-foreground transition-colors"
+              >
                 Regulamin
               </Link>
             </div>
@@ -198,7 +208,7 @@ export function Footer() {
       </div>
 
       {/* Decorative Element */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-[#F7E6E0]/20 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-[#FFDCE8]/20 to-transparent" />
     </footer>
   )
 }

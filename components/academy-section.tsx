@@ -103,7 +103,7 @@ const features = [
 
 export function AcademySection() {
   return (
-    <section id="academy" className="relative pt-16 pb-4 lg:pt-[148px] lg:pb-12 bg-[#F7E6E0] dark:bg-background">
+    <section id="academy" className="relative pt-16 pb-4 lg:pt-[148px] lg:pb-12 bg-[#FFDCE8] dark:bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -165,7 +165,7 @@ export function AcademySection() {
               <Card className="h-full bg-white dark:bg-card border-0 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between mb-2">
-                    <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase rounded-full bg-[#F7E6E0] dark:bg-accent/20 px-3 py-1">
+                    <span className="text-xs tracking-[0.2em] text-muted-foreground uppercase rounded-full bg-[#FFDCE8] dark:bg-accent/20 px-3 py-1">
                       {training.edition}
                     </span>
                   </div>
