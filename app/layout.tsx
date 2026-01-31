@@ -33,6 +33,10 @@ export const metadata: Metadata = {
     icon: '/icon.svg',
     apple: '/apple-icon.png',
   },
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FFDCE8' },
+    { media: '(prefers-color-scheme: dark)', color: 'oklch(0.12 0.01 30)' },
+  ],
 }
 
 export default function RootLayout({

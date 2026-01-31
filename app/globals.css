@@ -134,6 +134,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Jednolite z hero – Safari iOS (safe area, pasek), brak innego koloru w tle */
+    background-color: var(--bolsia-blush);
+  }
+  .dark html {
+    background-color: var(--background);
+  }
   body {
     @apply bg-background text-foreground;
   }
