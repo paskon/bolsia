@@ -64,7 +64,7 @@ export function HeroSection() {
         </div>
       </motion.div>
 
-      <div className="mx-auto grid min-h-[98vh] max-h-[1200px] max-w-7xl gap-8 px-6 pt-8 pb-8 items-end lg:grid-cols-2 lg:h-[98vh] lg:px-8">
+      <div className="mx-auto grid min-h-[98vh] max-h-[1200px] max-w-7xl gap-8 px-6 pt-8 pb-8 items-end lg:grid-cols-2 lg:h-[730px] lg:max-h-[730px] lg:px-8">
         {/* Text Content */}
         <motion.div 
           className="flex flex-col justify-end order-2 lg:order-1"
