@@ -52,7 +52,7 @@ export function AboutSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </div>
             {/* Desktop: ta sama wysokość co hero image, pozycja od góry sekcji (nie zmienia się przy powiększaniu treści po prawej) */}
-            <div className="relative z-10 hidden w-full overflow-hidden lg:block lg:absolute lg:top-[86px] lg:bottom-auto lg:left-0 lg:right-0 lg:aspect-auto lg:h-[calc(85vh+100px)]">
+            <div className="relative z-10 hidden w-full overflow-hidden lg:block lg:absolute lg:top-[86px] lg:bottom-auto lg:left-0 lg:right-0 lg:aspect-auto lg:h-[calc(85vh+100px)] lg:max-h-[1100px]">
               <div className="relative h-full w-full overflow-hidden bg-[#F7E6E0] dark:bg-muted">
                 <Image
                   src="/images/klaudia-paszkiewicz.png"

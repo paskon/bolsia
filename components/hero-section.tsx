@@ -26,9 +26,9 @@ export function HeroSection() {
   const hearts = useHearts()
 
   return (
-    <section id="home" className="relative min-h-[98vh] overflow-visible bg-[#F7E6E0] dark:bg-background">
-      {/* Spadające serduszka – tylko w hero */}
-      <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden>
+    <section id="home" className="relative min-h-[98vh] max-h-[1200px] overflow-visible bg-[#F7E6E0] dark:bg-background">
+      {/* Spadające serduszka – tylko w hero; na mobile start 20px powyżej viewport */}
+      <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden max-lg:top-[-20px] max-lg:h-[calc(100%+20px)]" aria-hidden>
         {hearts.map((heart) => (
           <span
             key={heart.id}
@@ -123,7 +123,7 @@ export function HeroSection() {
         {/* Hero Image - 100px taller, extends below section on desktop */}
         <div className="relative order-1 lg:order-2 lg:h-full lg:overflow-visible">
           <motion.div 
-            className="relative z-10 aspect-[3/4] w-full overflow-hidden lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:aspect-auto lg:h-[calc(85vh+100px)] lg:translate-y-[116px]"
+            className="relative z-10 aspect-[3/4] w-full overflow-hidden lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:aspect-auto lg:h-[calc(85vh+100px)] lg:max-h-[1100px] lg:translate-y-[116px]"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
