@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { Analytics } from "@vercel/analytics/next"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
@@ -42,6 +43,7 @@ function hasAnalyticsConsent(consent: CookieConsent | null): boolean {
 }
 
 export function CookieBanner() {
+  const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
   const [visible, setVisible] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
@@ -66,6 +68,10 @@ export function CookieBanner() {
   const handleDeny = () => hide("denied")
   const handleAcceptAll = () => hide("all")
   const handleSaveSettings = () => hide(settings)
+
+  if (pathname === "/walentynka") {
+    return null
+  }
 
   if (!mounted || !visible) {
     return hasAnalyticsConsent(consent) ? <Analytics /> : null

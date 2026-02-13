@@ -171,6 +171,59 @@
   }
 }
 
+/* Walentynka: przycisk Tak – powiększenie i delikatne trzęsienie */
+@keyframes walentynka-tak-bump {
+  0% {
+    transform: scale(1) translateX(0);
+  }
+  25% {
+    transform: scale(1.12) translateX(-3px);
+  }
+  40% {
+    transform: scale(1.12) translateX(3px);
+  }
+  55% {
+    transform: scale(1.12) translateX(-2px);
+  }
+  70% {
+    transform: scale(1.12) translateX(2px);
+  }
+  85% {
+    transform: scale(1.08) translateX(-1px);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+  }
+}
+
+.animate-walentynka-tak-bump {
+  transform-origin: center center;
+  animation: walentynka-tak-bump 0.5s ease-out both;
+}
+
+/* Walentynka: confetti serduszka */
+.heart-confetti-particle {
+  transform: translate(-50%, -50%);
+  animation: heart-confetti-fly 2.2s ease-out forwards;
+  opacity: 0;
+}
+.heart-confetti-particle {
+  animation-delay: var(--delay, 0ms);
+}
+@keyframes heart-confetti-fly {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(1);
+    opacity: 0;
+  }
+}
+
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
