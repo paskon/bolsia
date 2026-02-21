@@ -49,7 +49,7 @@ export function ThemeToggle() {
           variant="ghost"
           size="icon"
           onClick={cycleTheme}
-          className="relative h-8 w-8 hover:bg-foreground hover:text-primary-foreground transition-all duration-300"
+          className="relative h-8 w-8 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white transition-all duration-300"
         >
           {theme === "system" ? (
             <Monitor className="h-4 w-4" />

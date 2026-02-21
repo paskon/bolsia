@@ -113,7 +113,7 @@ export function AboutSection() {
               <Button
                 variant="outline"
                 size="icon"
-                className="h-10 w-10 border-foreground/20 hover:bg-foreground hover:text-primary-foreground transition-all duration-300"
+                className="h-10 w-10 border-foreground/20 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white transition-all duration-300"
                 asChild
               >
                 <a href="https://www.instagram.com/bolsia.brows/" target="_blank" rel="noopener noreferrer">
@@ -124,7 +124,7 @@ export function AboutSection() {
               <Button
                 variant="outline"
                 size="icon"
-                className="h-10 w-10 border-foreground/20 hover:bg-foreground hover:text-primary-foreground transition-all duration-300"
+                className="h-10 w-10 border-foreground/20 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white transition-all duration-300"
                 asChild
               >
                 <a href="https://www.facebook.com/bolsia.makeup/" target="_blank" rel="noopener noreferrer">

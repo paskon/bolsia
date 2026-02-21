@@ -26,7 +26,7 @@ export function HeroSection() {
   const hearts = useHearts()
 
   return (
-    <section id="home" className="relative min-h-[98vh] max-h-[1200px] overflow-visible bg-[#FFDCE8] dark:bg-background">
+    <section id="home" className="relative min-h-[98vh] max-h-[1200px] lg:min-h-0 lg:h-[900px] lg:max-h-[900px] overflow-visible bg-[#FFDCE8] dark:bg-background">
       {/* Spadające serduszka – tylko w hero; na mobile start 20px powyżej viewport */}
       <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden max-lg:top-[-20px] max-lg:h-[calc(100%+20px)]" aria-hidden>
         {hearts.map((heart) => (
@@ -64,7 +64,7 @@ export function HeroSection() {
         </div>
       </motion.div>
 
-      <div className="mx-auto grid min-h-[98vh] max-h-[1200px] max-w-7xl gap-8 px-6 pt-8 pb-8 items-end lg:grid-cols-2 lg:h-[730px] lg:max-h-[730px] lg:px-8">
+      <div className="mx-auto grid min-h-[98vh] max-h-[1200px] max-w-7xl gap-8 px-6 pt-8 pb-8 items-end lg:min-h-0 lg:h-full lg:max-h-full lg:grid-cols-2 lg:px-8">
         {/* Text Content */}
         <motion.div 
           className="flex flex-col justify-end order-2 lg:order-1"
@@ -101,7 +101,7 @@ export function HeroSection() {
           >
             <Button 
               size="lg" 
-              className="group tracking-wide"
+              className="group tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white"
               asChild
             >
               <Link href="#academy">
@@ -112,7 +112,7 @@ export function HeroSection() {
             <Button 
               variant="outline" 
               size="lg" 
-              className="tracking-wide border-foreground/20 hover:bg-foreground hover:text-primary-foreground"
+              className="tracking-wide border-foreground/20 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white"
               asChild
             >
               <Link href="#about">O mnie</Link>
@@ -123,7 +123,7 @@ export function HeroSection() {
         {/* Hero Image - 100px taller, extends below section on desktop */}
         <div className="relative order-1 lg:order-2 lg:h-full lg:overflow-visible">
           <motion.div 
-            className="relative z-10 aspect-[3/4] w-full overflow-hidden lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:aspect-auto lg:h-[calc(85vh+100px)] lg:max-h-[1100px] lg:translate-y-[116px]"
+            className="relative z-10 aspect-[3/4] w-full overflow-hidden lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:aspect-auto lg:h-[calc(68vh+80px)] lg:max-h-[880px] lg:translate-y-[116px]"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3 }}

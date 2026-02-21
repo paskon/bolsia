@@ -61,7 +61,7 @@ export function Footer() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                className="text-primary-foreground/70 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white"
                 asChild
               >
                 <a href="https://www.instagram.com/bolsia.brows/" target="_blank" rel="noopener noreferrer">
@@ -72,7 +72,7 @@ export function Footer() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                className="text-primary-foreground/70 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white"
                 asChild
               >
                 <a href="https://www.facebook.com/bolsia.makeup/" target="_blank" rel="noopener noreferrer">
@@ -145,7 +145,7 @@ export function Footer() {
               </p>
               <div className="space-y-3">
                 <Button
-                  className="w-full justify-center bg-primary-foreground text-foreground hover:bg-primary-foreground/90"
+                  className="w-full justify-center bg-primary-foreground text-foreground hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white"
                   asChild
                 >
                   <a href="https://booksy.com/pl-pl/122467_bolsia_brwi-i-rzesy_8820_krakow#ba_s=seo" target="_blank" rel="noopener noreferrer">

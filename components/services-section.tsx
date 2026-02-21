@@ -7,6 +7,7 @@ import Link from "next/link"
 
 const services = [
   {
+    visible: false,
     id: "permanent",
     category: "Makijaż Permanentny",
     title: "Permanent Makeup",
@@ -14,6 +15,7 @@ const services = [
     treatments: ["Brwi pudrowe", "Brwi ombre"],
   },
   {
+    visible: true,
     id: "henna",
     category: "Stylizacja Brwi",
     title: "Henna Pudrowa",
@@ -21,6 +23,7 @@ const services = [
     treatments: ["Henna pudrowa", "Regulacja brwi", "Stylizacja kształtu"],
   },
   {
+    visible: true,
     id: "lamination",
     category: "Laminacja",
     title: "Lami Lashes & Brows",
@@ -28,6 +31,8 @@ const services = [
     treatments: ["Laminacja rzęs", "Laminacja brwi", "Botox rzęs", "Farbowanie"],
   },
 ]
+
+const visibleServices = services.filter((service) => service.visible)
 
 export function ServicesSection() {
   return (
@@ -58,7 +63,7 @@ export function ServicesSection() {
 
         {/* Services Grid */}
         <div className="grid gap-px bg-border">
-          {services.map((service, index) => (
+          {visibleServices.map((service, index) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 30 }}
@@ -110,7 +115,7 @@ export function ServicesSection() {
                 <div className="lg:col-span-2 flex items-end">
                   <Button 
                     variant="ghost" 
-                    className="group p-0 h-auto text-sm tracking-wide hover:bg-transparent hover:text-foreground"
+                    className="group h-11 px-5 rounded-full text-base tracking-wide hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white"
                     asChild
                   >
                     <Link href="https://booksy.com/pl-pl/122467_bolsia_brwi-i-rzesy_8820_krakow#ba_s=seo" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
@@ -137,7 +142,7 @@ export function ServicesSection() {
           </p>
           <Button 
             size="lg" 
-            className="tracking-wide"
+            className="tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white"
             asChild
           >
             <Link href="https://booksy.com/pl-pl/122467_bolsia_brwi-i-rzesy_8820_krakow#ba_s=seo" target="_blank" rel="noopener noreferrer">

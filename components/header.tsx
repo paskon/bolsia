@@ -93,20 +93,23 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden h-10 w-10 hover:bg-foreground hover:text-primary-foreground transition-all duration-300"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          <span className="sr-only">Menu</span>
-        </Button>
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggle />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-10 w-10 hover:bg-foreground hover:text-primary-foreground transition-all duration-300"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <span className="sr-only">Menu</span>
+          </Button>
+        </div>
         <div className="hidden shrink-0 md:flex items-center gap-2">
           <Button 
             variant="outline" 
             size="sm" 
-            className="tracking-wide border-foreground/20 hover:bg-foreground hover:text-primary-foreground transition-all duration-300"
+            className="tracking-wide border-foreground/20 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white transition-all duration-300"
             asChild
           >
             <Link href="https://booksy.com/pl-pl/122467_bolsia_brwi-i-rzesy_8820_krakow#ba_s=seo" target="_blank" rel="noopener noreferrer">Umów wizytę</Link>
@@ -157,7 +160,7 @@ export function Header() {
                     <Button
                       variant="default"
                       size="lg"
-                      className="w-full h-14 rounded-2xl tracking-wide text-base"
+                      className="w-full h-14 rounded-2xl tracking-wide text-base hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white"
                       asChild
                     >
                       <Link
