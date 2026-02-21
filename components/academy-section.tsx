@@ -517,7 +517,7 @@ export function AcademySection() {
         >
           Wszystkie szkolenia obejmują profesjonalną sesję zdjęciową oraz certyfikat ukończenia.
           <br />
-          Możliwość płatności ratalnej. Skontaktuj się, aby poznać szczegóły.
+          Skontaktuj się, aby poznać szczegóły.
         </motion.p>
       </div>
 
