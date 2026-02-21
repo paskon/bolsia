@@ -26,7 +26,7 @@ export function HeroSection() {
   const hearts = useHearts()
 
   return (
-    <section id="home" className="relative min-h-[98vh] max-h-[1200px] lg:min-h-0 lg:h-[900px] lg:max-h-[900px] overflow-visible bg-[#FFDCE8] dark:bg-background">
+    <section id="home" className="relative min-h-[98vh] max-h-[1200px] lg:min-h-0 lg:h-[900px] lg:max-h-[900px] overflow-visible bg-[#FFDCE8] dark:bg-[var(--bolsia-blush-night)]">
       {/* Spadające serduszka – tylko w hero; na mobile start 20px powyżej viewport */}
       <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden max-lg:top-[-20px] max-lg:h-[calc(100%+20px)]" aria-hidden>
         {hearts.map((heart) => (
@@ -94,14 +94,14 @@ export function HeroSection() {
           </motion.p>
           
           <motion.div 
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
           >
             <Button 
               size="lg" 
-              className="group tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white"
+              className="group h-14 w-full text-base tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white sm:h-11 sm:w-auto sm:text-sm"
               asChild
             >
               <Link href="#academy">
@@ -112,7 +112,7 @@ export function HeroSection() {
             <Button 
               variant="outline" 
               size="lg" 
-              className="tracking-wide border-foreground/20 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white"
+              className="h-14 w-full text-base tracking-wide border-foreground/20 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white sm:h-11 sm:w-auto sm:text-sm"
               asChild
             >
               <Link href="#about">O mnie</Link>
@@ -128,7 +128,7 @@ export function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <div className="absolute left-0 right-0 bottom-0 top-20 bg-gradient-to-t from-[#FFDCE8]/50 dark:from-background/70 to-transparent z-10 lg:hidden" />
+            <div className="absolute left-0 right-0 bottom-0 top-20 bg-gradient-to-t from-[#FFDCE8]/50 dark:from-[var(--bolsia-blush-night-soft)]/70 to-transparent z-10 lg:hidden" />
             <div className="absolute inset-0 max-lg:translate-y-12 lg:translate-y-0">
               <Image
                 src="/images/hero-fashion.png"

@@ -142,7 +142,7 @@ export function ServicesSection() {
           </p>
           <Button 
             size="lg" 
-            className="tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white"
+            className="h-14 w-full text-base tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white sm:h-11 sm:w-auto sm:text-sm"
             asChild
           >
             <Link href="https://booksy.com/pl-pl/122467_bolsia_brwi-i-rzesy_8820_krakow#ba_s=seo" target="_blank" rel="noopener noreferrer">

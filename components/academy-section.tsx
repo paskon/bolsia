@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { AnimatePresence, motion } from "framer-motion"
 import { Plus, Clock, Users, Camera, BookOpen, Award, X } from "lucide-react"
@@ -14,8 +14,6 @@ const trainings = [
     title: "Henna Pudrowa",
     cover: "/images/training-cover-henna-pudrowa.png",
     subtitle: "Szkolenie indywidualne",
-    price: "1600",
-    currency: "zł",
     duration: "9h",
     models: "3 modelki",
     edition: "Wydanie 2026",
@@ -35,8 +33,6 @@ const trainings = [
     title: "Lami Lashes",
     cover: "/images/training-cover-lami-lashes.png",
     subtitle: "Szkolenie indywidualne",
-    price: "1600",
-    currency: "zł",
     duration: "9h",
     models: "3 modelki",
     edition: "Wydanie 2026",
@@ -57,8 +53,6 @@ const trainings = [
     title: "Lami Brows",
     cover: "/images/training-cover-lami-brows.png",
     subtitle: "Szkolenie indywidualne",
-    price: "1600",
-    currency: "zł",
     duration: "9h",
     models: "3 modelki",
     edition: "Wydanie 2026",
@@ -73,6 +67,28 @@ const trainings = [
       "Materiały szkoleniowe",
       "Wsparcie poszkoleniowe",
     ],
+  },
+  {
+    id: "lash-brows",
+    title: "Lami Lash & Brows",
+    cover: "/images/training-cover-lami-lashes.png",
+    secondaryCover: "/images/training-cover-lami-brows.png",
+    subtitle: "Szkolenie indywidualne",
+    duration: "2 dni",
+    models: "6 modelek",
+    edition: "Wydanie 2026",
+    description:
+      "Intensywne szkolenie łączone z laminacji rzęs i brwi, stworzone dla osób, które chcą kompleksowo opanować obie usługi w jednym programie. Pracujemy krok po kroku nad diagnostyką włosa, doborem produktów, bezpieczeństwem zabiegu oraz techniką wykonania, aby uzyskać trwały i estetyczny efekt. To praktyczny kurs, który pozwala od razu wdrożyć wiedzę do codziennej pracy z klientkami.",
+    includes: [
+      "Kompletny protokół laminacji rzęs i brwi",
+      "Dobór techniki do typu włosa i efektu",
+      "Praktyka na modelkach",
+      "Certyfikat ukończenia",
+      "Profesjonalna sesja zdjęciowa prac",
+      "Materiały szkoleniowe",
+      "Wsparcie poszkoleniowe",
+    ],
+    fullWidth: true,
   },
 ]
 
@@ -100,10 +116,16 @@ const features = [
 ]
 
 const COVER_ASPECT_CLASS = "aspect-[801/1091]"
+const AMBASSADOR_LOGOS = [
+  { src: "/images/zola-logo.svg", alt: "Zola", href: "https://zola.ua/en" },
+  { src: "/images/elanlogo.svg", alt: "Elan", href: "https://elanofficial.pl" },
+]
 
 export function AcademySection() {
   const [activeTrainingId, setActiveTrainingId] = useState<string | null>(null)
   const activeTraining = trainings.find((training) => training.id === activeTrainingId) ?? null
+  const ambassadorTrackRef = useRef<HTMLDivElement | null>(null)
+  const isAmbassadorHoveredRef = useRef(false)
 
   useEffect(() => {
     if (!activeTraining) return
@@ -124,8 +146,35 @@ export function AcademySection() {
     }
   }, [activeTraining])
 
+  useEffect(() => {
+    const track = ambassadorTrackRef.current
+    if (!track) return
+
+    let rafId = 0
+    let lastTime = performance.now()
+    let x = 0
+
+    const tick = (time: number) => {
+      const dt = (time - lastTime) / 1000
+      lastTime = time
+      const speedPxPerSec = isAmbassadorHoveredRef.current ? 36 : 56
+      const loopWidth = track.scrollWidth / 2
+
+      x -= speedPxPerSec * dt
+      if (-x >= loopWidth) {
+        x += loopWidth
+      }
+
+      track.style.transform = `translateX(${x}px)`
+      rafId = requestAnimationFrame(tick)
+    }
+
+    rafId = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafId)
+  }, [])
+
   return (
-    <section id="academy" className="relative pt-16 pb-4 lg:pt-[148px] lg:pb-12 bg-[#FFDCE8] dark:bg-background">
+    <section id="academy" className="relative pt-16 pb-0 lg:pt-[148px] lg:pb-0 bg-[#FFDCE8] dark:bg-[var(--bolsia-blush-night)]">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -153,6 +202,17 @@ export function AcademySection() {
             Każdy kurs to kompleksowe przygotowanie do pracy zawodowej, 
             zakończone profesjonalną sesją zdjęciową i certyfikatem.
           </p>
+          <div className="mt-8 flex justify-center">
+            <Button
+              size="lg"
+              className="h-14 w-full text-base tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white sm:h-11 sm:w-auto sm:text-sm"
+              asChild
+            >
+              <Link href="https://www.instagram.com/bolsia.brows/" target="_blank" rel="noopener noreferrer">
+                Zapisz się na szkolenie
+              </Link>
+            </Button>
+          </div>
         </motion.div>
 
         {/* Features Row */}
@@ -175,11 +235,11 @@ export function AcademySection() {
         </motion.div>
 
         {/* Training Cards */}
-        <div className="mb-24 grid gap-8 md:grid-cols-2 lg:mb-28 lg:grid-cols-3 lg:auto-rows-fr">
+        <div className="mb-0 grid gap-8 md:grid-cols-2 lg:mb-0 lg:grid-cols-3 lg:auto-rows-fr">
           {trainings.map((training) => (
             <motion.div
               key={training.id}
-              className="h-full"
+              className={training.fullWidth ? "h-full md:col-span-2 lg:col-span-3" : "h-full"}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -190,7 +250,7 @@ export function AcademySection() {
               ) : (
                 <motion.button
                   type="button"
-                  className="group h-full w-full text-left"
+                  className="group h-full w-full cursor-pointer text-left"
                   onClick={() => setActiveTrainingId(training.id)}
                   whileTap={{ scale: 0.995 }}
                 >
@@ -204,9 +264,9 @@ export function AcademySection() {
                       layout: { type: "spring", stiffness: 380, damping: 38, mass: 0.6, bounce: 0 },
                     }}
                   >
-                    <Card className="flex h-full flex-col bg-white dark:bg-card border-0 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
+                    <Card className={`flex ${training.secondaryCover ? "h-auto lg:h-[330px]" : "h-auto lg:h-[376px]"} flex-col bg-white dark:bg-card border-0 shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden`}>
                       <CardHeader className="relative pb-4">
-                        <div className="pr-[9.75rem]">
+                        <div className={training.secondaryCover ? "pr-[8.25rem] lg:pr-[18rem]" : "pr-[9.75rem]"}>
                           <div className="min-w-0">
                             <motion.span
                               layoutId={`training-edition-${training.id}`}
@@ -231,40 +291,55 @@ export function AcademySection() {
                                 )}
                               </CardTitle>
                             </motion.div>
+                            <motion.div layoutId={`training-subtitle-${training.id}`}>
+                              <CardDescription className="mt-1 text-sm">
+                                {training.subtitle}
+                              </CardDescription>
+                            </motion.div>
                           </div>
-                          <div className="absolute top-0 right-6 flex shrink-0 flex-col items-end gap-2">
+                          <div className="absolute top-0 right-4 flex shrink-0 flex-col items-end gap-2 lg:right-6">
                             <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-foreground/10 bg-background/60 text-muted-foreground transition-all duration-300 group-hover:scale-125 group-hover:bg-[#A44E70] group-hover:text-white">
                               <Plus className="h-4 w-4" />
                             </span>
                             <motion.div
                               layoutId={`training-cover-${training.id}`}
-                              className="relative mt-2 w-[9.1rem] shrink-0"
+                              className={training.secondaryCover ? "relative mt-2 hidden w-[6.8rem] shrink-0 sm:block lg:mr-10 lg:w-[10.7rem]" : "relative mt-2 hidden w-[8.2rem] shrink-0 sm:block"}
                             >
-                              <div className={`relative ${COVER_ASPECT_CLASS} w-full overflow-hidden rounded-xl border border-foreground/10 bg-muted/20 shadow-sm`}>
-                                <Image
-                                  src={training.cover}
-                                  alt={`Okładka szkolenia ${training.title}`}
-                                  fill
-                                  className="object-cover"
-                                />
-                              </div>
+                              {training.secondaryCover ? (
+                                <div className="relative h-[8.8rem] w-full lg:h-[14.3rem]">
+                                  <div className={`absolute left-0 -top-4 w-[86%] ${COVER_ASPECT_CLASS} overflow-hidden rounded-xl border border-foreground/10 bg-muted/20 shadow-sm transition-transform duration-300 group-hover:scale-[1.08] group-hover:rotate-2 lg:-top-12`}>
+                                    <Image
+                                      src={training.cover}
+                                      alt={`Okładka szkolenia ${training.title}`}
+                                      fill
+                                      className="object-cover"
+                                    />
+                                  </div>
+                                  <div className={`absolute left-8 top-3 w-[86%] ${COVER_ASPECT_CLASS} overflow-hidden rounded-xl border border-foreground/10 bg-muted/20 shadow-sm transition-transform duration-300 group-hover:scale-[1.08] group-hover:-rotate-2 lg:left-16 lg:top-6`}>
+                                    <Image
+                                      src={training.secondaryCover}
+                                      alt={`Druga okładka szkolenia ${training.title}`}
+                                      fill
+                                      className="object-cover"
+                                    />
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className={`relative ${COVER_ASPECT_CLASS} w-full overflow-hidden rounded-xl border border-foreground/10 bg-muted/20 shadow-sm transition-transform duration-300 group-hover:scale-[1.08] group-hover:rotate-2`}>
+                                  <Image
+                                    src={training.cover}
+                                    alt={`Okładka szkolenia ${training.title}`}
+                                    fill
+                                    className="object-cover"
+                                  />
+                                </div>
+                              )}
                             </motion.div>
                           </div>
                         </div>
                       </CardHeader>
 
-                      <CardContent className="mt-auto space-y-5 pt-0">
-                        <motion.div layoutId={`training-subtitle-${training.id}`}>
-                          <CardDescription className="text-sm">
-                            {training.subtitle}
-                          </CardDescription>
-                        </motion.div>
-
-                        <motion.div layoutId={`training-price-${training.id}`} className="flex items-baseline gap-1">
-                          <span className="font-serif text-4xl font-medium">{training.price}</span>
-                          <span className="text-lg text-muted-foreground">{training.currency}</span>
-                        </motion.div>
-
+                      <CardContent className={`mt-auto space-y-5 pt-0 ${training.secondaryCover ? "pr-[8.25rem] lg:pr-[18rem]" : ""}`}>
                         <div className="flex gap-4 text-sm text-muted-foreground">
                           <div className="flex items-center gap-1.5">
                             <Clock className="w-4 h-4" />
@@ -287,6 +362,7 @@ export function AcademySection() {
               )}
             </motion.div>
           ))}
+
         </div>
 
         <AnimatePresence>
@@ -313,6 +389,15 @@ export function AcademySection() {
                 }}
                 onClick={(event) => event.stopPropagation()}
               >
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-6 top-4 z-30 h-9 w-9 rounded-full bg-background/70 backdrop-blur-sm hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:bg-card/70 dark:hover:bg-[#A44E70] dark:hover:text-white"
+                  onClick={() => setActiveTrainingId(null)}
+                >
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Zamknij</span>
+                </Button>
                 <Card className="max-h-[90vh] overflow-y-auto bg-white dark:bg-card border-0 shadow-2xl rounded-3xl">
                   <CardHeader className="relative p-12">
                     <div className="mb-2">
@@ -323,15 +408,6 @@ export function AcademySection() {
                         {activeTraining.edition}
                       </motion.span>
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="absolute top-0 right-6 h-9 w-9 rounded-full hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white"
-                      onClick={() => setActiveTrainingId(null)}
-                    >
-                      <X className="h-4 w-4" />
-                      <span className="sr-only">Zamknij</span>
-                    </Button>
                     <div className="lg:pr-[20rem]">
                       <motion.div layoutId={`training-title-${activeTraining.id}`}>
                         <CardTitle className="font-serif text-3xl lg:text-5xl font-medium">
@@ -347,26 +423,42 @@ export function AcademySection() {
 
                     <motion.div
                       layoutId={`training-cover-${activeTraining.id}`}
-                      className="mt-6 w-[179px] lg:absolute lg:right-6 lg:top-[4.25rem] lg:mt-0 lg:w-[284px] lg:-translate-x-4"
+                      className="mt-6 w-full lg:absolute lg:right-6 lg:top-[4.25rem] lg:mt-0 lg:w-[227px] lg:-translate-x-4"
                     >
-                      <div className={`relative ${COVER_ASPECT_CLASS} w-full overflow-hidden rounded-2xl border border-foreground/10 bg-muted/20`}>
-                        <Image
-                          src={activeTraining.cover}
-                          alt={`Okładka szkolenia ${activeTraining.title}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
+                      {activeTraining.secondaryCover ? (
+                        <div className="relative h-[22rem] w-full lg:h-[16rem]">
+                          <div className={`absolute bottom-0 left-0 w-[82%] ${COVER_ASPECT_CLASS} overflow-hidden rounded-2xl border border-foreground/10 bg-muted/20 lg:w-[88%] lg:-translate-x-10`}>
+                            <Image
+                              src={activeTraining.cover}
+                              alt={`Okładka szkolenia ${activeTraining.title}`}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          <div className={`absolute bottom-0 right-0 translate-y-24 w-[82%] ${COVER_ASPECT_CLASS} overflow-hidden rounded-2xl border border-foreground/10 bg-muted/20 lg:w-[88%] lg:translate-y-40`}>
+                            <Image
+                              src={activeTraining.secondaryCover}
+                              alt={`Druga okładka szkolenia ${activeTraining.title}`}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <div className={`relative ${COVER_ASPECT_CLASS} w-full overflow-hidden rounded-2xl border border-foreground/10 bg-muted/20`}>
+                          <Image
+                            src={activeTraining.cover}
+                            alt={`Okładka szkolenia ${activeTraining.title}`}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      )}
                     </motion.div>
                   </CardHeader>
 
                   <CardContent className="space-y-8 px-12 pb-12">
                     <div className="space-y-8 lg:pr-[20rem]">
-                      <motion.div layoutId={`training-price-${activeTraining.id}`} className="flex items-baseline gap-2">
-                        <span className="font-serif text-5xl lg:text-6xl font-medium">{activeTraining.price}</span>
-                        <span className="text-2xl text-muted-foreground">{activeTraining.currency}</span>
-                      </motion.div>
-
                       <div className="flex flex-wrap gap-6 text-base text-muted-foreground">
                         <div className="flex items-center gap-2">
                           <Clock className="w-5 h-5" />
@@ -400,7 +492,7 @@ export function AcademySection() {
                     <div className="pt-2">
                       <Button
                         size="lg"
-                        className="tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white"
+                        className="h-14 w-full text-base tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white sm:h-11 sm:w-auto sm:text-sm"
                         asChild
                       >
                         <Link href="https://www.instagram.com/bolsia.brows/" target="_blank" rel="noopener noreferrer">
@@ -415,38 +507,68 @@ export function AcademySection() {
           )}
         </AnimatePresence>
 
-        {/* CTA – jeden przycisk poniżej kolumn */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex justify-center mt-10"
-        >
-          <Button
-            size="lg"
-            className="tracking-wide hover:bg-[#A44E70] hover:text-white dark:hover:bg-[#A44E70] dark:hover:text-white"
-            asChild
-          >
-            <Link href="https://www.instagram.com/bolsia.brows/" target="_blank" rel="noopener noreferrer">
-              Zapisz się na szkolenie
-            </Link>
-          </Button>
-        </motion.div>
-
         {/* Bottom Note */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center text-sm text-muted-foreground mt-12"
+          className="text-center text-sm text-muted-foreground mt-8 lg:mt-0"
         >
           Wszystkie szkolenia obejmują profesjonalną sesję zdjęciową oraz certyfikat ukończenia.
           <br />
           Możliwość płatności ratalnej. Skontaktuj się, aby poznać szczegóły.
         </motion.p>
       </div>
+
+      {/* Full-width Ambassador Stripe */}
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.45 }}
+        className="group/ambassador relative left-1/2 right-1/2 mt-12 w-screen -translate-x-1/2 bg-white/35 py-8 dark:bg-white/5"
+        onMouseEnter={() => {
+          isAmbassadorHoveredRef.current = true
+        }}
+        onMouseLeave={() => {
+          isAmbassadorHoveredRef.current = false
+        }}
+      >
+        <p className="text-center text-sm font-bold tracking-[0.18em] uppercase">
+          Oficjalna ambasadorka
+        </p>
+        <div className="mt-10 overflow-hidden">
+          <div ref={ambassadorTrackRef} className="flex w-max items-center gap-12 px-6">
+            {[
+              ...AMBASSADOR_LOGOS,
+              ...AMBASSADOR_LOGOS,
+              ...AMBASSADOR_LOGOS,
+              ...AMBASSADOR_LOGOS,
+              ...AMBASSADOR_LOGOS,
+              ...AMBASSADOR_LOGOS,
+              ...AMBASSADOR_LOGOS,
+              ...AMBASSADOR_LOGOS,
+            ].map((logo, i) => (
+              <a
+                key={`${logo.alt}-${i}`}
+                href={logo.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative h-11 w-32 shrink-0 transition-opacity duration-200 hover:opacity-80"
+                aria-label={`${logo.alt} - oficjalna strona`}
+              >
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  fill
+                  className="object-contain brightness-0 saturate-0 dark:invert"
+                />
+              </a>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }

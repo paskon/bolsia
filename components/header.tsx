@@ -98,10 +98,10 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="h-10 w-10 hover:bg-foreground hover:text-primary-foreground transition-all duration-300"
+            className="h-11 w-11 hover:bg-foreground hover:text-primary-foreground transition-all duration-300"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             <span className="sr-only">Menu</span>
           </Button>
         </div>
@@ -134,7 +134,7 @@ export function Header() {
                 style={{ WebkitBackdropFilter: "blur(24px) saturate(150%)" }}
               >
                 <nav className="flex flex-col gap-3">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 gap-3">
                     {navItems.map((item, index) => (
                       <motion.div
                         key={item.href}
@@ -144,7 +144,7 @@ export function Header() {
                       >
                         <Link
                           href={item.href}
-                          className="flex h-12 items-center justify-center rounded-2xl bg-white/70 dark:bg-white/10 text-sm font-medium tracking-wide text-foreground transition-colors hover:bg-white/90 dark:hover:bg-white/20"
+                          className="flex h-14 w-full items-center justify-center rounded-2xl bg-white/70 dark:bg-white/10 text-base font-medium tracking-wide text-foreground transition-colors hover:bg-white/90 dark:hover:bg-white/20"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {item.label}

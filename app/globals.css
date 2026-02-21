@@ -46,6 +46,8 @@
   --bolsia-blush: #FFDCE8;
   --bolsia-blush-light: #FFEEF4;
   --bolsia-blush-dark: #FFCDE0;
+  --bolsia-blush-night: #2f1e28;
+  --bolsia-blush-night-soft: #3a2430;
 }
 
 
@@ -82,6 +84,8 @@
   --sidebar-accent-foreground: oklch(0.95 0.02 25);
   --sidebar-border: oklch(0.25 0.01 30);
   --sidebar-ring: oklch(0.55 0.02 25);
+  --bolsia-blush-night: #3b2531;
+  --bolsia-blush-night-soft: #4a2e3d;
 }
 
 @theme inline {

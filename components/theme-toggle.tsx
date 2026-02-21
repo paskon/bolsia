@@ -49,14 +49,14 @@ export function ThemeToggle() {
           variant="ghost"
           size="icon"
           onClick={cycleTheme}
-          className="relative h-8 w-8 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white transition-all duration-300"
+          className="relative h-11 w-11 md:h-8 md:w-8 hover:bg-[var(--bolsia-blush-dark)] hover:text-foreground dark:hover:bg-[#A44E70] dark:hover:text-white transition-all duration-300"
         >
           {theme === "system" ? (
-            <Monitor className="h-4 w-4" />
+            <Monitor className="h-5 w-5 md:h-4 md:w-4" />
           ) : (
             <>
-              <Sun className={`h-4 w-4 transition-all ${isDark ? "scale-0 rotate-90" : "scale-100 rotate-0"}`} />
-              <Moon className={`absolute h-4 w-4 transition-all ${isDark ? "scale-100 rotate-0" : "scale-0 -rotate-90"}`} />
+              <Sun className={`h-5 w-5 md:h-4 md:w-4 transition-all ${isDark ? "scale-0 rotate-90" : "scale-100 rotate-0"}`} />
+              <Moon className={`absolute h-5 w-5 md:h-4 md:w-4 transition-all ${isDark ? "scale-100 rotate-0" : "scale-0 -rotate-90"}`} />
             </>
           )}
           <span className="sr-only">Zmień motyw</span>
