@@ -51,11 +51,6 @@ export function Footer() {
                 />
               </div>
             </Link>
-            <p className="mt-6 text-primary-foreground/70 leading-relaxed">
-              Premium Beauty Academy & Studio. Gdzie precyzja kosmetologii 
-              spotyka estetykę high fashion.
-            </p>
-
             {/* Social Links */}
             <div className="flex gap-4 mt-8">
               <Button

@@ -166,12 +166,15 @@
 /* Hero: snowfall animation */
 @keyframes snow-fall {
   0% {
-    transform: translateY(-10%) translateX(0);
-    opacity: 1;
+    transform: translateY(-10%) translateX(0) rotate(var(--heart-rotate, 0deg));
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.38;
   }
   100% {
-    transform: translateY(110vh) translateX(var(--snow-drift, 0px));
-    opacity: 0.8;
+    transform: translateY(110vh) translateX(var(--snow-drift, 0px)) rotate(var(--heart-rotate, 0deg));
+    opacity: 0.3;
   }
 }
 

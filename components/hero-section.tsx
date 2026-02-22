@@ -14,10 +14,11 @@ function useHearts() {
     return Array.from({ length: HEART_COUNT }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
-      size: 10 + Math.random() * 14,
+      size: 8 + Math.random() * 22,
       duration: 10 + Math.random() * 14,
       delay: Math.random() * 12,
       drift: (Math.random() - 0.5) * 80,
+      rotate: (Math.random() - 0.5) * 20,
     }))
   }, [])
 }
@@ -32,16 +33,28 @@ export function HeroSection() {
         {hearts.map((heart) => (
           <span
             key={heart.id}
-            className="absolute text-white/40 dark:text-white/5"
+            className="absolute text-[#EB6846]/35 dark:text-[#EB6846]/20"
             style={{
               left: `${heart.left}%`,
-              top: "-2%",
-              fontSize: `${heart.size}px`,
+              top: "-40px",
               animation: `snow-fall ${heart.duration}s linear ${heart.delay}s infinite`,
+              opacity: 0,
+              animationFillMode: "both",
               ["--snow-drift" as string]: `${heart.drift}px`,
+              ["--heart-rotate" as string]: `${heart.rotate}deg`,
             }}
           >
-            ♥
+            <svg
+              width={heart.size}
+              height={heart.size}
+              viewBox="0 0 24 24"
+              aria-hidden
+            >
+              <path
+                fill="currentColor"
+                d="M12 21.35c-.42 0-.83-.15-1.16-.45C7.01 17.52 2 12.98 2 8.5 2 5.42 4.42 3 7.5 3c1.9 0 3.63.92 4.5 2.35C12.87 3.92 14.6 3 16.5 3 19.58 3 22 5.42 22 8.5c0 4.48-5.01 9.02-8.84 12.4-.33.3-.74.45-1.16.45z"
+              />
+            </svg>
           </span>
         ))}
       </div>
