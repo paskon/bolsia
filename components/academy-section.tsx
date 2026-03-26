@@ -118,7 +118,6 @@ const features = [
 const COVER_ASPECT_CLASS = "aspect-[801/1091]"
 const AMBASSADOR_LOGOS = [
   { src: "/images/zola-logo.svg", alt: "Zola", href: "https://zola.ua/en" },
-  { src: "/images/elanlogo.svg", alt: "Elan", href: "https://elanofficial.pl" },
 ]
 
 export function AcademySection() {
