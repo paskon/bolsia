@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import { AnimatePresence, motion } from "framer-motion"
 import { Plus, Clock, Users, Camera, BookOpen, Award, X } from "lucide-react"
@@ -123,8 +123,6 @@ const AMBASSADOR_LOGOS = [
 export function AcademySection() {
   const [activeTrainingId, setActiveTrainingId] = useState<string | null>(null)
   const activeTraining = trainings.find((training) => training.id === activeTrainingId) ?? null
-  const ambassadorTrackRef = useRef<HTMLDivElement | null>(null)
-  const isAmbassadorHoveredRef = useRef(false)
 
   useEffect(() => {
     if (!activeTraining) return
@@ -144,33 +142,6 @@ export function AcademySection() {
       window.removeEventListener("keydown", onKeyDown)
     }
   }, [activeTraining])
-
-  useEffect(() => {
-    const track = ambassadorTrackRef.current
-    if (!track) return
-
-    let rafId = 0
-    let lastTime = performance.now()
-    let x = 0
-
-    const tick = (time: number) => {
-      const dt = (time - lastTime) / 1000
-      lastTime = time
-      const speedPxPerSec = isAmbassadorHoveredRef.current ? 36 : 56
-      const loopWidth = track.scrollWidth / 2
-
-      x -= speedPxPerSec * dt
-      if (-x >= loopWidth) {
-        x += loopWidth
-      }
-
-      track.style.transform = `translateX(${x}px)`
-      rafId = requestAnimationFrame(tick)
-    }
-
-    rafId = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(rafId)
-  }, [])
 
   return (
     <section id="academy" className="relative pt-16 pb-0 lg:pt-[148px] lg:pb-0 bg-[#FFDCE8] dark:bg-[var(--bolsia-blush-night)]">
@@ -526,35 +497,23 @@ export function AcademySection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.45 }}
-        className="group/ambassador relative left-1/2 right-1/2 mt-12 w-screen -translate-x-1/2 bg-white/35 py-8 dark:bg-white/5"
-        onMouseEnter={() => {
-          isAmbassadorHoveredRef.current = true
-        }}
-        onMouseLeave={() => {
-          isAmbassadorHoveredRef.current = false
-        }}
+        className="relative left-1/2 right-1/2 mt-12 w-screen -translate-x-1/2 bg-white/35 py-10 dark:bg-white/5"
       >
-        <p className="text-center text-sm font-bold tracking-[0.18em] uppercase">
-          Oficjalna ambasadorka
-        </p>
-        <div className="mt-10 overflow-hidden">
-          <div ref={ambassadorTrackRef} className="flex w-max items-center gap-12 px-6">
-            {[
-              ...AMBASSADOR_LOGOS,
-              ...AMBASSADOR_LOGOS,
-              ...AMBASSADOR_LOGOS,
-              ...AMBASSADOR_LOGOS,
-              ...AMBASSADOR_LOGOS,
-              ...AMBASSADOR_LOGOS,
-              ...AMBASSADOR_LOGOS,
-              ...AMBASSADOR_LOGOS,
-            ].map((logo, i) => (
+        <div className="mx-auto flex max-w-7xl flex-col items-center px-6 text-center lg:px-8">
+          <p className="text-sm font-bold tracking-[0.18em] uppercase">
+            Oficjalna ambasadorka
+          </p>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
+            Współpracuje z marką Zola, łącząc praktykę szkoleniową z profesjonalnymi standardami pracy w stylizacji brwi i rzęs.
+          </p>
+          <div className="mt-8">
+            {AMBASSADOR_LOGOS.map((logo) => (
               <a
-                key={`${logo.alt}-${i}`}
+                key={logo.alt}
                 href={logo.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative h-11 w-32 shrink-0 transition-opacity duration-200 hover:opacity-80"
+                className="relative block h-12 w-36 transition-opacity duration-200 hover:opacity-80"
                 aria-label={`${logo.alt} - oficjalna strona`}
               >
                 <Image

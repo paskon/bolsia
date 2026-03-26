@@ -136,7 +136,7 @@ export function HeroSection() {
         {/* Hero Image - 100px taller, extends below section on desktop */}
         <div className="relative order-1 lg:order-2 lg:h-full lg:overflow-visible">
           <motion.div 
-            className="relative z-10 aspect-[3/4] w-full overflow-hidden lg:absolute lg:bottom-0 lg:left-0 lg:right-0 lg:aspect-auto lg:h-[calc(68vh+80px)] lg:max-h-[880px] lg:translate-y-[116px]"
+            className="relative z-10 aspect-[3/4] w-full overflow-hidden lg:absolute lg:top-[3.5rem] lg:left-0 lg:right-0 lg:aspect-auto lg:h-[calc(100%-3.5rem+116px)] lg:max-h-[880px]"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
